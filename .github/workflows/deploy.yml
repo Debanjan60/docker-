@@ -9,6 +9,8 @@ env:
   MONGODB_DB_NAME: gha-demo
 jobs:
   test:
+    container:
+      image: node:16
     environment: testing
     runs-on: ubuntu-latest
     env:
@@ -19,9 +21,9 @@ jobs:
       PORT: 8080
     steps:
       - name: Get Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Cache dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ env.CACHE_KEY }}-${{ hashFiles('**/package-lock.json') }}
